@@ -20,6 +20,6 @@ public:
         return res;
     }
     // N - No. of string, L - Length of string
-    // TC: O(N * LlogL) + O(N) 
+    // TC: O(N * LlogL) 
     // SC: O(N)
 };
