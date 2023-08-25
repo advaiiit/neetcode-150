@@ -1,6 +1,7 @@
 #include<vector>
 #include<unordered_set>
 #include<string>
+#include<bitset>
 using namespace std;
 
 class Brute {
@@ -37,7 +38,7 @@ public:
 };
 // TC: O(N^3) SC: O(1)
 
-class Solution {
+class OptimizedSolutions {
 public:
     bool usingSet(vector<vector<char>>& board) {
         unordered_set<string> set;
@@ -64,4 +65,27 @@ public:
         return true;
     }
     // TC: O(N^2) SC: O(N)
+
+    bool usingBitset(vector<vector<char>>& board) {
+        bitset<9> row[9], col[9], box[9];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char value = board[i][j];
+                if (value == '.') continue;
+                
+                int intValue = (value - '0') % 9;
+                int boxIndex = 3 * (i / 3) + j / 3;
+
+                if (row[i][intValue] || col[intValue][j] || box[boxIndex][intValue]) 
+                    return false;
+                
+                row[i][intValue] = 1;
+                col[intValue][j] = 1;
+                box[boxIndex][intValue] = 1;
+            }
+        }
+
+        return true;
+    }
 };
