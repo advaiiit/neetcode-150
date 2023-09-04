@@ -26,4 +26,4 @@ public:
         return stack.size();
     }
 };
-// TC: O(N) SC: O(N)
+// TC: O(NlogN) SC: O(N)
