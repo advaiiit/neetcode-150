@@ -49,4 +49,25 @@ public:
         return maxArea;
     }
     // TC: O(N) SC: O(N)
+
+    int onePass(vector<int>& heights) {
+        int totalBars = heights.size(), maxArea = 0;
+        stack<int> stack;
+        
+        for (int i = 0; i <= totalBars; i++) {
+            while (!stack.empty() && (i == totalBars || heights[stack.top()] >= heights[i])) {
+                int height, width;
+                
+                height = heights[stack.top()];
+                stack.pop();
+                width = (stack.empty()) ? i : i - stack.top() - 1;
+ 
+                maxArea = max(maxArea, height * width);
+            }
+            stack.push(i);
+        }
+
+        return maxArea;
+    }
+    // TC: O(N) SC: O(N)
 };
