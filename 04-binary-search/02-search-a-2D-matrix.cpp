@@ -12,9 +12,9 @@ public:
             int mid = start + (end - start) / 2;
             if (matrix[mid][0] <= target) {
                 row = mid;
-                start++;
+                start = mid + 1;
             } else 
-                end--;
+                end = mid - 1;
         }
 
         start = 0; end = numCols - 1;
@@ -24,9 +24,9 @@ public:
             if (matrix[row][mid] == target)
                 return true;
             else if (matrix[row][mid] < target)
-                start++;
+                start = mid + 1;
             else
-                end--;
+                end = mid - 1;
         }
 
         return false;
@@ -44,9 +44,9 @@ public:
             if (curr == target) 
                 return true;
             else if (curr < target) 
-                start++;
+                start = mid + 1;
             else 
-                end--;
+                end = mid - 1;
         }
 
         return false;

@@ -12,11 +12,12 @@ public:
             if (nums[mid] == target) 
                 return mid;
             else if (nums[mid] < target) 
-                left++;
+                left = mid + 1;
             else 
-                right--;
+                right = mid - 1;
         }
 
         return -1;
     }
+    // TC: O(log N) SC: O(1)
 };
