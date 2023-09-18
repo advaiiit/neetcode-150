@@ -125,5 +125,5 @@ public:
 
         return -1;
     }
-
+    // TC: O(log(min(N1, N2))) SC: O(1)
 };
