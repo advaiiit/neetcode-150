@@ -1,5 +1,6 @@
 #include<string>
 #include<unordered_map>
+#include<unordered_set>
 using namespace std;
 
 class Solution {
@@ -57,6 +58,36 @@ public:
         return maxLen;
     }
     // TC: O(N^2) SC: O(N^2)
+
+    int slidingWindow2(string s, int k) {
+
+        // For each unique char find the largest substring 
+        // in which you can replace k chars with the unique char
+
+        int maxLen = 0;
+        unordered_set<char> uniqueChars;
+
+        for (char c : s) uniqueChars.insert(c);
+
+        for (char c : uniqueChars) {
+            int start = 0, count = 0;
+            
+            for (int end = 0; end < s.length(); end++) {
+                if (s[end] == c) count++;
+
+                while (!(end - start + 1 - count <= k)) {
+                    if (s[start] == c) count--;
+                    start++;
+                }
+
+                maxLen = max(maxLen, end - start + 1);
+            }
+        }
+
+        return maxLen;
+    }
+    // TC: O(N^2) SC: O(N)
+    // Worst case: All N chars are unique
 };
 
 class BinarySearchWithSlidingWindow {
@@ -106,3 +137,31 @@ private:
     }
 };
 // TC: O(NlogN) SC: O(26 * logN)
+
+class SlidingWindowFast {
+public:
+    int characterReplacement(string s, int k) {
+
+        // If string is valid, add characters, else removing characters from the beginning
+
+        int start = 0, maxFreq = 0, maxLen = 0;
+        vector<int> charFreq(26);
+
+        for (int end = 0; end < s.length(); end++) {
+            int currChar = s[end] - 'A';
+
+            charFreq[currChar]++;
+            maxFreq = max(maxFreq, charFreq[currChar]);
+
+            if (!(end - start + 1 - maxFreq <= k)) {
+                charFreq[s[start] - 'A']--;
+                start++;
+            }
+
+            maxLen = max(maxLen, end - start + 1);
+        }
+
+        return maxLen;
+    }
+    // TC: O(N) SC: O(N)
+};
