@@ -17,6 +17,37 @@ public:
 
         while (list1 && list2) {
             if (list1->val <= list2->val) {
+                ptr->next = new ListNode(list1->val);
+                list1 = list1->next;
+            } else {
+                ptr->next = new ListNode(list2->val);
+                list2 = list2->next;
+            }
+            ptr = ptr->next;
+        }
+
+        while (list1) {
+            ptr->next = new ListNode(list1->val);
+            list1 = list1->next;
+            ptr = ptr->next;
+        }
+
+        while (list2) {
+            ptr->next = new ListNode(list2->val);
+            list2 = list2->next;
+            ptr = ptr->next;
+        }
+
+        return head->next;
+    }
+    // TC: O(n1 + n2) SC: O(n1 + n2)
+
+    ListNode* usingTwoPointers(ListNode* list1, ListNode* list2) {
+        ListNode* head = new ListNode();
+        ListNode* ptr = head;
+
+        while (list1 && list2) {
+            if (list1->val <= list2->val) {
                 ptr->next = list1;
                 list1 = list1->next;
             } else {
@@ -31,10 +62,10 @@ public:
 
         return head->next;
     }
-    // TC: O(N) SC: O(N)
-    // N: total length of both lists
+    // TC: O(n1 + n2) SC: O(1)
+    
 
-    ListNode* withoutExtraSpace(ListNode* list1, ListNode* list2) {
+    ListNode* inPlace(ListNode* list1, ListNode* list2) {
         if (list1 == NULL) return list2;
         if (list2 == NULL) return list1;
 
@@ -55,6 +86,5 @@ public:
 
         return head;
     }
-    // TC: O(N) SC: O(1)
-    // N: total length of both lists
+    // TC: O(n1 + n2) SC: O(1)
 };
