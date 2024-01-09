@@ -47,7 +47,7 @@ public:
     // TC: O(3N) SC: (2N)
 
     ListNode* optimal(ListNode* head, int k) {
-        
+
         // For each group, you need to reverse k-1 links
         // Reverse each link for a group one by one
         // After k-1 reverse operations move to the next group
@@ -88,4 +88,5 @@ public:
         
         return i;
     }
+    // TC: O(N) SC: O(1)
 };
