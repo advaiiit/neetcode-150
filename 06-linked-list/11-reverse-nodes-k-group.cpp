@@ -88,5 +88,5 @@ public:
         
         return i;
     }
-    // TC: O(N) SC: O(1)
+    // TC: O(2N) SC: O(1)
 };
