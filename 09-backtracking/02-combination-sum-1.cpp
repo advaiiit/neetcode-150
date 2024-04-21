@@ -36,6 +36,6 @@ private:
 };
 // TC: O(2^T * L)
 // SC: L * N
-// T - Target (If T = 10 and candidates contain 1, then 1 can be used 10 times)
+// T - Target (If T = 10 and candidates contain 1, then 1 can be picked/not picked 10 times)
 // L - Average length of the combination. Copying a vector to another is an O(N) operation
 // N - No. of possible combinations. 
